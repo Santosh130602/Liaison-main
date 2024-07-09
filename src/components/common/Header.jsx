@@ -290,7 +290,7 @@ const Header = () => {
         },
       };
 
-      const response = await axios.get('http://localhost:4000/api/notifications/count', config);
+      const response = await axios.get('https://liaison-main-4u51.onrender.com/api/notifications/count', config);
       setNotificationCount(response.data.count);
     } catch (error) {
       toast({

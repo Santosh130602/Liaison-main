@@ -24,8 +24,8 @@ const SideBar = () => {
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
-        setUsername(decodedToken.username); // Assuming the token has a 'username' field
-        setToken(token); // Set token state if it's valid
+        setUsername(decodedToken.username);
+        setToken(token); 
       } catch (error) {
         console.error('Invalid token', error);
       }

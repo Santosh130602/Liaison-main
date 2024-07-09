@@ -69,7 +69,7 @@ const AddPost = () => {
         },
       };
 
-      const { data } = await axios.post(`http://localhost:4000/api/posts/addPost`, { post: pic, caption }, config);
+      const { data } = await axios.post(`https://liaison-main-4u51.onrender.com/api/posts/addPost`, { post: pic, caption }, config);
       toast({
         title: "Post added Successfully",
         status: 'success',
