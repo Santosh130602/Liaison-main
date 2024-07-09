@@ -36,3 +36,13 @@
     transform: rotate(360deg);
   }
 }
+
+
+@keyframes waveOpacity {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}

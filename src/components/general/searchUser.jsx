@@ -922,6 +922,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useToast } from '@chakra-ui/react';
+import SideBar from './sideBar';
 
 const SearchFriend = () => {
     const [username, setUsername] = useState('');
@@ -1029,13 +1030,19 @@ const SearchFriend = () => {
     };
 
     return (
-        <div className="p-4">
-            <div className="mb-4">
-                <label className="block text-gray-700">Username</label>
+        <div className='flex'>
+            <div className='w-1/6'>
+                <SideBar/>
+            </div>
+        
+        <div className="p-8 mt-16 w-5/6 justify-center text-left text-slate-300 bg-black min-h-screen border-slate-700">
+            <div className="mb-4 ">
+                {/* <label className="block text-gray-700">Username</label> */}
                 <input
                     type="text"
-                    className="w-full px-3 py-2 border rounded"
+                    className="w-full px-3 py-2 border-1 rounded bg-gray-900 border-slate-700 "
                     value={username}
+                    placeholder='Username'
                     onChange={(e) => {
                         setUsername(e.target.value);
                         fetchSuggestions('usernames', e.target.value);
@@ -1049,10 +1056,10 @@ const SearchFriend = () => {
                 </datalist>
             </div>
 
-            <div className="mb-4">
-                <label className="block text-gray-700">Education Level</label>
+            <div className="mb-4 text-gray-700">
+                {/* <label className="block text-gray-700">Education Level</label> */}
                 <select
-                    className="w-full px-3 py-2 border rounded"
+                    className="w-full px-3 py-2 border-1 rounded bg-gray-900 text-gray-700 border-slate-700"
                     value={educationLevel}
                     onChange={(e) => setEducationLevel(e.target.value)}
                 >
@@ -1065,10 +1072,11 @@ const SearchFriend = () => {
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700">School Name</label>
+                {/* <label className="block text-gray-700">School Name</label> */}
                 <input
                     type="text"
-                    className="w-full px-3 py-2 border rounded"
+                    className="w-full px-3 py-2 border-1 rounded bg-gray-900 border-slate-700"
+                    placeholder='School Name'
                     value={school}
                     onChange={(e) => {
                         setSchool(e.target.value);
@@ -1084,20 +1092,22 @@ const SearchFriend = () => {
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700">Passing Year</label>
+                {/* <label className="block text-gray-700">Passing Year</label> */}
                 <input
                     type="number"
-                    className="w-full px-3 py-2 border rounded"
+                    className="w-full px-3 py-2 border-1 rounded bg-gray-900 border-slate-700"
+                    placeholder='Passing Year'
                     value={passingYear}
                     onChange={(e) => setPassingYear(e.target.value)}
                 />
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700">State</label>
+                {/* <label className="block text-gray-700">State</label> */}
                 <input
                     type="text"
-                    className="w-full px-3 py-2 border rounded"
+                    className="w-full px-3 py-2 border-1 rounded bg-gray-900 border-slate-700"
+                    placeholder='State'
                     value={state}
                     onChange={(e) => {
                         setState(e.target.value);
@@ -1113,10 +1123,11 @@ const SearchFriend = () => {
             </div>
 
             <div className="mb-4">
-                <label className="block text-gray-700">District</label>
+                {/* <label className="block text-gray-700">District</label> */}
                 <input
                     type="text"
-                    className="w-full px-3 py-2 border rounded"
+                    className="w-full px-3 py-2 border-1 rounded bg-gray-900 border-slate-700"
+                    placeholder='District'
                     value={district}
                     onChange={(e) => {
                         setDistrict(e.target.value);
@@ -1167,8 +1178,11 @@ const SearchFriend = () => {
                     ))
                 ) : (
                     <p className="text-gray-500">No users found.</p>
+                    // <p></p>
+
                 )}
             </div>
+        </div>
         </div>
     );
 };

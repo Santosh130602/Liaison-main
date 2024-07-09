@@ -47,7 +47,6 @@ const getMyFriendPost = asyncHandler(async (req, res) => {
 });
 
 
-
 //  get all post 
 
 const getAllPosts = asyncHandler(async (req, res) => {
@@ -56,6 +55,23 @@ const getAllPosts = asyncHandler(async (req, res) => {
 
     res.status(200).json({ userId, posts });
 });
+
+
+// get all post without login
+
+const getAllPostsWithoutLogin = asyncHandler(async (req, res) => {
+    try {
+        const posts = await Post.find()
+            .populate('user', '-password -email')
+            .sort({ createdAt: -1 });
+
+        res.status(200).json({ posts });
+    } catch (error) {
+        console.error('Error fetching posts:', error); // Log the error for debugging
+        res.status(500).json({ message: 'Unable to fetch posts' });
+    }
+});
+
 
 
 
@@ -159,7 +175,7 @@ const addLikeToPost = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { addPost, getMyPost, getAllPosts, updatePost, deletePost, addLikeToPost,getMyFriendPost }
+module.exports = { addPost, getMyPost, getAllPosts, updatePost, deletePost, addLikeToPost,getMyFriendPost,getAllPostsWithoutLogin }
 
 
 
