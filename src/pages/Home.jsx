@@ -7,6 +7,8 @@ import { FaRegHeart, FaRegComment } from 'react-icons/fa';
 import { FcLike } from 'react-icons/fc';
 import SideBar from '../components/general/sideBar';
 import LoadingComponent from '../components/general/loding';
+import SmallSideBar from '../components/general/smallsidebar'
+import Footer from '../components/general/footer';
 
 const HomePage = () => {
     const [posts, setPosts] = useState([]);
@@ -31,7 +33,7 @@ const HomePage = () => {
     const getAllPosts = async () => {
         setLoadingPost(true);
         try {
-            const response = await axios.get('https://liaison-main-4u51.onrender.com/api/posts/posts', config);
+            const response = await axios.get('http://localhost:4000/api/posts/posts', config);
             const { userId, posts } = response.data;
             if (userId) {
                 setUserId(userId);
@@ -53,7 +55,7 @@ const HomePage = () => {
     const getAllPostsWithoutLogin = async () => {
         setLoadingPost(true);
         try {
-            const response = await axios.get('https://liaison-main-4u51.onrender.com/api/posts/posts/withoulogin',config);
+            const response = await axios.get('http://localhost:4000/api/posts/posts/withoulogin',config);
             const { posts } = response.data;
             setPosts(posts);
         } catch (error) {
@@ -91,7 +93,7 @@ const HomePage = () => {
         }
 
         try {
-            await axios.put(`https://liaison-main-4u51.onrender.com/api/posts/addlike/${id}`, {}, config);
+            await axios.put(`http://localhost:4000/api/posts/addlike/${id}`, {}, config);
             getAllPosts();
         } catch (error) {
             toast({
@@ -120,7 +122,7 @@ const HomePage = () => {
         setCurrentPostId(id);
         setIsModalOpen(true);
         try {
-            const response = await axios.get(`https://liaison-main-4u51.onrender.com/api/comments/${id}/getallcomments`, config);
+            const response = await axios.get(`http://localhost:4000/api/comments/${id}/getallcomments`, config);
             const allComments = response.data;
             setComments(prevComments => ({
                 ...prevComments,
@@ -164,7 +166,7 @@ const HomePage = () => {
         }
 
         try {
-            await axios.post('https://liaison-main-4u51.onrender.com/api/comments/addcomment', { postId: currentPostId, text: newComment }, config);
+            await axios.post('http://localhost:4000/api/comments/addcomment', { postId: currentPostId, text: newComment }, config);
             toast({
                 title: "Comment added successfully",
                 status: 'success',
@@ -211,14 +213,16 @@ const HomePage = () => {
     };
 
     return (
-        <>
-            <div className='flex bg-black'>
+        <div className='home flex'>
+            <div className='home-component flex bg-black'>
                 {/* Left Section for Navigation */}
-                <SideBar />
+                <SideBar className='home-sidebar' />
+               
+                
 
                 {/* Right Section for Posts */}
-                <div className="w-4/5 p-8 ml-[20%] mt-16 flex items-center justify-center min-h-screen">
-                    <div className="grid grid-cols-1 md:grid-cols-1 gap-6 w-7/12 justify-center items-center">
+                <div className="home-post p-8 ml-[20%] mt-16 flex items-center justify-center min-h-screen">
+                    <div className="home-post2 grid grid-cols-1 md:grid-cols-1 gap-6 w-7/12 justify-center items-center">
                         {loadingPost ? (
                             // <Spinner style={{ alignItems: "center", justifyContent: "center",size:"16rem" }} animation="border" />
                             <div className=' flex flex-col gap-6'>
@@ -231,7 +235,7 @@ const HomePage = () => {
                             </div>
                         ) : (
                             posts.map((post) => (
-                                <div key={post._id} className="bg-white p-4 rounded-md shadow-md">
+                                <div key={post._id} className="bg-white p-4 rounded-md shadow-md mb-16">
                                     <div className="flex items-center mb-2">
                                         <img src={generateUserImgUrl(post.user.username)} alt="User" className="h-8 w-8 rounded-full mr-2" />
                                         <span className="text-sm font-medium">{post.user.username}</span>
@@ -310,8 +314,10 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
-        </>
+           
+        </div>
     );
 };
 
 export default HomePage;
+

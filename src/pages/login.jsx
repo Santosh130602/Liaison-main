@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaGoogle, FaFacebook } from "react-icons/fa";
 import logsig from "../assets/siglogin.png";
 import PasswordResetModal from '../components/general/forgetPassword';
+// import { GoogleLogin } from '@react-oauth/google';
 
 const Login = () => {
   const [username, setUsername] = useState('');
@@ -18,7 +19,7 @@ const Login = () => {
     setError('');
 
     try {
-      const response = await fetch('https://liaison-main-4u51.onrender.com/api/user/login', {
+      const response = await fetch('http://localhost:4000/api/user/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

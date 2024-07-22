@@ -10,7 +10,7 @@ const NotificationsPage = () => {
   const fetchFriendRequests = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('https://liaison-main-4u51.onrender.com/api/usersearch/notifications/friendRequests', {
+      const response = await axios.get('http://localhost:4000/api/usersearch/notifications/friendRequests', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -28,7 +28,7 @@ const NotificationsPage = () => {
   const handleAcceptRequest = async (requestId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`https://liaison-main-4u51.onrender.com/api/usersearch/notifications/friendRequests/${requestId}/accept`, {}, {
+      await axios.put(`http://localhost:4000/api/usersearch/notifications/friendRequests/${requestId}/accept`, {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -42,7 +42,7 @@ const NotificationsPage = () => {
   const handleRejectRequest = async (requestId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`https://liaison-main-4u51.onrender.com/api/usersearch/notifications/friendRequests/${requestId}/reject`, {}, {
+      await axios.put(`http://localhost:4000/api/usersearch/notifications/friendRequests/${requestId}/reject`, {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -58,13 +58,13 @@ const NotificationsPage = () => {
   };
 
   return (
-    <div className="flex">
-      <div className="w-1/6 bg-gray-800 min-h-screen">
+    <div className="flex bg-black">
+      <div className="w-1/6  h-screen">
         <SideBar />
       </div>
-      <div className="flex-1 p-4 bg-black min-h-screen">
+      <div className=" notification flex-1 p-4 bg-black min-h-screen">
         <h1 className="text-2xl font-semibold mb-4 mt-16 text-white">Notifications</h1>
-        <div>
+        <div className="">
           {friendRequests.map(request => (
             <div key={request._id} className="bg-zinc-900 p-2 m-4 mb-2 rounded-md">
               <div className="flex gap-2 mt-2 text-slate-300 justify-around">

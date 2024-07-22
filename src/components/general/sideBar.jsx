@@ -1,18 +1,17 @@
 
-
-
-
-
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { jwtDecode } from "jwt-decode";
-import { IoSettingsOutline } from "react-icons/io5";
-import { IoHomeSharp } from "react-icons/io5";
-import { IoHome } from "react-icons/io5";
+import { useNavigate } from "react-router-dom";
+import {jwtDecode} from "jwt-decode"; // Corrected import
+import { IoSettingsOutline, IoHome, IoNotifications, IoPersonAdd } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
-import { IoNotifications } from "react-icons/io5";
 import { TbLogout } from "react-icons/tb";
-import { IoPersonAdd } from "react-icons/io5";
+import { MdOutlineMessage } from "react-icons/md";
+import { BiImageAdd } from "react-icons/bi";
+
+
+
+
+
 
 const SideBar = () => {
   const navigate = useNavigate();
@@ -61,9 +60,16 @@ const SideBar = () => {
     navigate("/search");
   }
 
+  const handleMessage = () =>{
+    navigate("/message");
+  }
+
   const handleHome = () => {
     navigate("/");
   };
+  const handleAddPost = () =>{
+    navigate("/addpost");
+  }
 
   const handleLogout = () => {
     localStorage.removeItem('token');
@@ -79,16 +85,44 @@ const SideBar = () => {
   };
 
   return (
-    <div className="w-1/6 bg-zinc-900 h-[100vh] p-4 fixed mt-16">
+    <div className="side-bar w-1/6 bg-zinc-900 h-[100vh] p-4 fixed mt-16 flex flex-col justify-between">
+    <div>
       <ul className="space-y-4">
-        <li className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center  gap-2 text-left " onClick={handleHome}> <IoHome className="text-lg"/>Home</li>
-        <li className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center  gap-2 text-left" onClick={handleProfile}> <CgProfile className="text-lg"/>Profile</li>
-        <li className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center  gap-2 text-left" onClick={handleNotifications}> <IoNotifications className="text-lg"/>Notifications</li>
-        <li className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center  gap-2 text-left" onClick={handleSearch}> <IoPersonAdd className="text-lg"/>add Friend</li>
-        <li className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center  gap-2 text-left" onClick={handleLogout}><TbLogout className="text-lg"/>Logout</li>
-        <li className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center  gap-2 text-left " onClick={handleProfile}> <IoSettingsOutline className="text-lg"/>Settings</li>
+        <li className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center gap-2 text-left" onClick={handleHome}>
+          <IoHome className="hidden-text-logo text-lg" />
+          <span className="hidden-text">Home</span>
+        </li>
+        <li className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center gap-2 text-left" onClick={handleProfile}>
+          <CgProfile className="hidden-text-logo text-lg" />
+          <span className="hidden-text">Profile</span>
+        </li>
+        <li className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center gap-2 text-left" onClick={handleAddPost}>
+          <BiImageAdd className="hidden-text-logo text-xl" />
+          <span className="hidden-text">Add Post</span>
+        </li>
+        <li className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center gap-2 text-left" onClick={handleNotifications}>
+          <IoNotifications className="hidden-text-logo text-lg" />
+          <span className="hidden-text">Notification</span>
+        </li>
+        <li className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center gap-2 text-left" onClick={handleSearch}>
+          <IoPersonAdd className="hidden-text-logo text-lg" />
+          <span className="hidden-text">Add Friend</span>
+        </li>
+        <li className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center gap-2 text-left" onClick={handleMessage}>
+          <MdOutlineMessage className="hidden-text-logo text-lg" />
+          <span className="hidden-text">Message</span>
+        </li>
+        <li className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center gap-2 text-left" onClick={handleLogout}>
+          <TbLogout className="hidden-text-logo text-lg" />
+          <span className="hidden-text">Logout</span>
+        </li>
       </ul>
     </div>
+    <div className="flex cursor-pointer bg-zinc-900 hover:bg-zinc-800 text-slate-300 px-2 py-1 rounded-md items-center gap-2 text-left mt-auto mb-16" onClick={handleProfile}>
+      <IoSettingsOutline className="hidden-text-logo text-lg" />
+      <span className="hidden-text">Settings</span>
+    </div>
+  </div>
   );
 };
 

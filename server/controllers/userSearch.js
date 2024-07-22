@@ -636,6 +636,47 @@ const getFriends = asyncHandler(async (req, res) => {
 });
 
 
+const getMyAllFriends = asyncHandler(async (req, res) => {
+  const userId = req.user._id;
+
+  try {
+    // Find all friend requests where the current user is either the requester or recipient and the status is 'accepted'
+    const friends = await FriendRequest.find({
+      $or: [
+        { requester: userId, status: 'accepted' },
+        { recipient: userId, status: 'accepted' }
+      ]
+    }).populate('requester recipient', 'username email');
+
+    // Construct the friend list by mapping the friend request objects to the appropriate user
+    const friendList = friends.map(friend => {
+      const friendUser = friend.requester._id.toString() === userId.toString()
+        ? friend.recipient
+        : friend.requester;
+
+      return {
+        _id: friendUser._id,
+        username: friendUser.username,
+        email: friendUser.email
+      };
+    });
+    // Respond with the list of friends including their user IDs, usernames, and emails
+    res.json({ friends: friendList });
+  } catch (error) {
+    // Log and respond with an error message
+    console.error('Error fetching friends:', error);
+    res.status(500).json({ message: 'Error fetching friends' });
+  }
+});
+
+
+
+
+
+// const getAllfriend
+
+
+
 module.exports = {
     userSuggestions,
     userSearch,
@@ -644,5 +685,6 @@ module.exports = {
     rejectFriendRequest,
     sendFriendRequest,
     getFriends,
-    checkFriendshipStatus
+    checkFriendshipStatus,
+    getMyAllFriends
 };

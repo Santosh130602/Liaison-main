@@ -39,38 +39,53 @@ const getMyPost = asyncHandler(async (req, res) => {
 
 // get friend post 
 const getMyFriendPost = asyncHandler(async (req, res) => {
-    const userId = req.user._id;
+    const friendId = req.params.friendId;
+    // console.log('Fetching posts for friendId:', friendId); 
+    try {
+        const posts = await Post.find({ user: friendId }).populate('user', '-password -email').sort({ createdAt: -1 }); 
+        // console.log('Posts found:', posts); 
 
-    const posts = await Post.find({ user: userId }).populate('user', '-password -email').sort({ createdAt: -1 });
-
-    res.status(200).json({ userId, posts });
+        res.status(200).json({ friendId, posts });
+    } catch (error) {
+        console.error('Error fetching friend posts:', error);
+        res.status(500).json({ message: 'Server Error' });
+    }
 });
 
+// const getMyFriendPost = asyncHandler(async (req, res) => {
+//     const friendId = req.params.friendId; // Assuming you are passing friendId as a URL parameter
+//     const posts = await Post.find({ user: friendId }).populate('user', '-password -email').sort({ createdAt: -1 });
+//     res.status(200).json({ friendId, posts });
+// });
 
 //  get all post 
 
 const getAllPosts = asyncHandler(async (req, res) => {
     const userId = req.user._id;
     const posts = await Post.find().populate('user', '-password -email').sort({ createdAt: -1 });
-
     res.status(200).json({ userId, posts });
 });
 
 
 // get all post without login
 
-const getAllPostsWithoutLogin = asyncHandler(async (req, res) => {
-    try {
-        const posts = await Post.find()
-            .populate('user', '-password -email')
-            .sort({ createdAt: -1 });
+// const getAllPostsWithoutLogin = asyncHandler(async (req, res) => {
+//     try {
+//         const posts = await Post.find()
+//             .populate('user', '-password -email')
+//             .sort({ createdAt: -1 });
 
+//         res.status(200).json({ posts });
+//     } catch (error) {
+//         console.error('Error fetching posts:', error); // Log the error for debugging
+//         res.status(500).json({ message: 'Unable to fetch posts' });
+//     }
+// });
+
+    const getAllPostsWithoutLogin = asyncHandler(async (req, res) => {
+        const posts = await Post.find().populate('user', '-password -email').sort({ createdAt: -1 });
         res.status(200).json({ posts });
-    } catch (error) {
-        console.error('Error fetching posts:', error); // Log the error for debugging
-        res.status(500).json({ message: 'Unable to fetch posts' });
-    }
-});
+    });
 
 
 

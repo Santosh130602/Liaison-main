@@ -7,9 +7,9 @@ const router = express.Router();
 
 router.route('/addPost').post(protect, addPost);
 router.route('/myposts').get(protect, getMyPost);
-router.route('/myfriendposts').get(protect, getMyFriendPost);
+router.route('/myfriendposts/:friendId').get(protect, getMyFriendPost);
 router.route('/posts').get(protect, getAllPosts);
-router.route('/posts/withoulogin').get(protect, getAllPostsWithoutLogin);
+router.route('/posts/withoulogin').get( getAllPostsWithoutLogin);
 router.route('/updatepost/:id').put(protect, updatePost);
 router.route('/addlike/:id').put(protect, addLikeToPost);
 router.route('/deletepost/:id').delete(protect, deletePost);

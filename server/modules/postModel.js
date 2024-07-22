@@ -1,3 +1,37 @@
+// const mongoose = require("mongoose");
+
+// const postSchema = mongoose.Schema(
+//     {
+//         user: {
+//             type: mongoose.Schema.Types.ObjectId,
+//             ref: "User",
+//             required: true
+//         },
+//         caption: {
+//             type: String,
+//             required: true,
+//         },
+//         post: {
+//             type: String,
+//             required: true
+//         },
+//         likes: [{
+//             type: mongoose.Schema.Types.ObjectId,
+//             ref: "User"
+//         }],
+//         comments: [{
+//             type: mongoose.Schema.Types.ObjectId,
+//             ref: "Comment"
+//         }]
+//     },
+//     { timestamps: true }
+// );
+
+// const Post = mongoose.model("Post", postSchema);
+
+// module.exports = Post;
+
+
 const mongoose = require("mongoose");
 
 const postSchema = mongoose.Schema(
@@ -10,10 +44,13 @@ const postSchema = mongoose.Schema(
         caption: {
             type: String,
             required: true,
+            minlength: 1,
+            maxlength: 500 // Example constraint
         },
         post: {
             type: String,
-            required: true
+            required: true,
+            minlength: 1
         },
         likes: [{
             type: mongoose.Schema.Types.ObjectId,
@@ -26,6 +63,10 @@ const postSchema = mongoose.Schema(
     },
     { timestamps: true }
 );
+
+// Adding indexes to improve query performance
+postSchema.index({ user: 1 });
+postSchema.index({ createdAt: -1 });
 
 const Post = mongoose.model("Post", postSchema);
 

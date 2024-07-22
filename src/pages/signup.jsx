@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import logsig from "../assets/siglogin.png";
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const [formData, setFormData] = useState({
@@ -19,6 +20,7 @@ const Signup = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -37,7 +39,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await fetch('https://liaison-main-4u51.onrender.com/api/user/register', {
+      const response = await fetch('http://localhost:4000/api/user/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
@@ -48,6 +50,7 @@ const Signup = () => {
       const result = await response.json();
       if (response.ok) {
         setSuccess(`Signup successful `);
+        navigate('/login')
       } else {
         setError(result.message || 'Signup failed');
       }
