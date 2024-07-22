@@ -10,7 +10,7 @@ const NotificationsPage = () => {
   const fetchFriendRequests = async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.get('http://localhost:4000/api/usersearch/notifications/friendRequests', {
+      const response = await axios.get('https://liaison-main-4oyd.onrender.com/api/usersearch/notifications/friendRequests', {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -28,7 +28,7 @@ const NotificationsPage = () => {
   const handleAcceptRequest = async (requestId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:4000/api/usersearch/notifications/friendRequests/${requestId}/accept`, {}, {
+      await axios.put(`https://liaison-main-4oyd.onrender.com/api/usersearch/notifications/friendRequests/${requestId}/accept`, {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -42,7 +42,7 @@ const NotificationsPage = () => {
   const handleRejectRequest = async (requestId) => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`http://localhost:4000/api/usersearch/notifications/friendRequests/${requestId}/reject`, {}, {
+      await axios.put(`https://liaison-main-4oyd.onrender.com/api/usersearch/notifications/friendRequests/${requestId}/reject`, {}, {
         headers: {
           Authorization: `Bearer ${token}`
         }

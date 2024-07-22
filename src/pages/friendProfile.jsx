@@ -520,7 +520,7 @@ const FriendProfile = () => {
 
     const fetchFriendProfile = async (id) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/user/profile/${id}`, config);
+            const response = await axios.get(`https://liaison-main-4oyd.onrender.com/api/user/profile/${id}`, config);
             setFriend(response.data.user); // Set friend data in state
         } catch (error) {
             console.error('Error fetching friend profile:', error);
@@ -531,7 +531,7 @@ const FriendProfile = () => {
         setLoading(true);
         setError(null);
         try {
-            const response = await axios.get(`http://localhost:4000/api/posts/myfriendposts/${friendId}`, config);
+            const response = await axios.get(`https://liaison-main-4oyd.onrender.com/api/posts/myfriendposts/${friendId}`, config);
             setFriendPosts(response.data.posts);
         } catch (error) {
             setError('Error fetching friend posts');
@@ -567,7 +567,7 @@ const FriendProfile = () => {
 
     const fetchComments = async (postId) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/comments/${postId}`, config);
+            const response = await axios.get(`https://liaison-main-4oyd.onrender.com/api/comments/${postId}`, config);
             setComments(response.data.comments);
         } catch (error) {
             console.error('Error fetching comments:', error);
@@ -576,7 +576,7 @@ const FriendProfile = () => {
 
     const handleAddComment = async () => {
         try {
-            const response = await axios.post(`http://localhost:4000/api/comments/${selectedPost._id}`, { text: commentText }, config);
+            const response = await axios.post(`https://liaison-main-4oyd.onrender.com/api/comments/${selectedPost._id}`, { text: commentText }, config);
             setComments([...comments, response.data.comment]);
             setCommentText('');
         } catch (error) {
@@ -586,7 +586,7 @@ const FriendProfile = () => {
 
     const handleDeletePost = async (postId) => {
         try {
-            await axios.delete(`http://localhost:4000/api/posts/deletepost/${postId}`, config);
+            await axios.delete(`https://liaison-main-4oyd.onrender.com/api/posts/deletepost/${postId}`, config);
             toast({
                 title: "Post deleted successfully",
                 status: 'success',

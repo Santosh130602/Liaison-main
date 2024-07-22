@@ -2288,7 +2288,7 @@ const Message = () => {
   useEffect(() => {
     if (userId) {
       fetchUserFriends();
-      socket.current = io('http://localhost:4000');
+      socket.current = io('https://liaison-main-4oyd.onrender.com');
       socket.current.emit('join', userId);
 
       socket.current.on('receiveMessage', (message) => {
@@ -2325,7 +2325,7 @@ const Message = () => {
   const fetchUserFriends = async () => {
     setLoadingProfile(true);
     try {
-      const response = await axios.get('http://localhost:4000/api/usersearch/getuserallfriend', config);
+      const response = await axios.get('https://liaison-main-4oyd.onrender.com/api/usersearch/getuserallfriend', config);
       setFriends(response.data.friends);
     } catch (error) {
       handleFetchError(error, 'friends');
@@ -2426,7 +2426,7 @@ const Message = () => {
 
   const getUserChats = async (userId) => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/message/${userId}`);
+      const response = await axios.get(`https://liaison-main-4oyd.onrender.com/api/message/${userId}`);
       setChat(response.data);
       
     } catch (error) {

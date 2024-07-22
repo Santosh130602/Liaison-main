@@ -373,7 +373,7 @@ const ProfilePage = () => {
     const fetchUserProfile = async () => {
         setLoadingProfile(true);
         try {
-            const response = await axios.get('http://localhost:4000/api/user/profile', config);
+            const response = await axios.get('https://liaison-main-4oyd.onrender.com/api/user/profile', config);
             setUser(response.data.user);
         } catch (error) {
             handleFetchError(error, 'profile');
@@ -385,7 +385,7 @@ const ProfilePage = () => {
     const fetchUserPosts = async () => {
         setLoadingPosts(true);
         try {
-            const response = await axios.get('http://localhost:4000/api/posts/myposts', config);
+            const response = await axios.get('https://liaison-main-4oyd.onrender.com/api/posts/myposts', config);
             setPosts(response.data.posts);
             setPostCount(response.data.posts.length);
         } catch (error) {
@@ -397,7 +397,7 @@ const ProfilePage = () => {
 
         const fetchUserFriends = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/api/usersearch/getuserallfriend', config);
+            const response = await axios.get('https://liaison-main-4oyd.onrender.com/api/usersearch/getuserallfriend', config);
             // console.log(response.data); 
             setFriends(response.data.friends);
             setFriendCount(response.data.friends.length);
@@ -409,7 +409,7 @@ const ProfilePage = () => {
     const fetchUserFriendPost = async () => {
         setLoadingPosts(true);
         try {
-            const response = await axios.get('http://localhost:4000/api/posts/myfriendposts', config);
+            const response = await axios.get('https://liaison-main-4oyd.onrender.com/api/posts/myfriendposts', config);
             setPosts(response.data.posts);
         } catch (error) {
             handleFetchError(error, 'posts');
@@ -433,7 +433,7 @@ const ProfilePage = () => {
 
     const handleDeletePost = async (postId) => {
         try {
-            await axios.delete(`http://localhost:4000/api/posts/deletepost/${postId}`, config);
+            await axios.delete(`https://liaison-main-4oyd.onrender.com/api/posts/deletepost/${postId}`, config);
             toast({
                 title: "Post deleted successfully",
                 status: 'success',
@@ -462,7 +462,7 @@ const ProfilePage = () => {
 
     const fetchComments = async (postId) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/comments/${postId}`, config);
+            const response = await axios.get(`https://liaison-main-4oyd.onrender.com/api/comments/${postId}`, config);
             setComments(response.data.comments);
         } catch (error) {
             handleFetchError(error, 'comments');
@@ -480,7 +480,7 @@ const ProfilePage = () => {
 
     const handleAddComment = async () => {
         try {
-            const response = await axios.post(`http://localhost:4000/api/comments/${selectedPost._id}`, { text: commentText }, config);
+            const response = await axios.post(`https://liaison-main-4oyd.onrender.com/api/comments/${selectedPost._id}`, { text: commentText }, config);
             setComments([...comments, response.data.comment]);
             setCommentText('');
         } catch (error) {

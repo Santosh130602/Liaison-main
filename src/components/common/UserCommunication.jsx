@@ -493,8 +493,8 @@ import {jwtDecode} from 'jwt-decode'; // Import jwt-decode
 
 const UserCommunication = () => {
   const { friendId, friendName } = useParams();
-  const navigate = useNavigate(); // Access history object from react-router-dom
-  const [userId, setUserId] = useState(null); // State to store userId
+  const navigate = useNavigate(); 
+  const [userId, setUserId] = useState(null); 
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
   const [stream, setStream] = useState(null);
@@ -504,7 +504,7 @@ const UserCommunication = () => {
   const [isAudioCallActive, setIsAudioCallActive] = useState(false);
   const [isVideoCallActive, setIsVideoCallActive] = useState(false);
 
-  const myVideo = useRef(null); // Initialize refs with null
+  const myVideo = useRef(null); 
   const friendVideo = useRef(null);
   const messageEndRef = useRef(null);
 
@@ -527,7 +527,7 @@ const UserCommunication = () => {
 
   useEffect(() => {
     if (userId) {
-      fetchUserProfile(userId); // Fetch user profile using userId
+      fetchUserProfile(userId); 
     }
     fetchFriendProfile(friendId);
   }, [userId, friendId]);
@@ -538,7 +538,7 @@ const UserCommunication = () => {
 
   const fetchUserProfile = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/user/profile/${id}`);
+      const response = await axios.get(`https://liaison-main-4oyd.onrender.com/api/user/profile/${id}`);
       setUser(response.data.user);
     } catch (error) {
       console.error('Error fetching user profile', error);
@@ -547,7 +547,7 @@ const UserCommunication = () => {
 
   const fetchFriendProfile = async (id) => {
     try {
-      const response = await axios.get(`http://localhost:4000/api/user/profile/${id}`);
+      const response = await axios.get(`https://liaison-main-4oyd.onrender.com/api/user/profile/${id}`);
       setFriend(response.data.user);
     } catch (error) {
       console.error('Error fetching friend profile', error);
@@ -604,7 +604,7 @@ const UserCommunication = () => {
 
     peer.on('stream', stream => {
       if (friendVideo.current) {
-        friendVideo.current.srcObject = stream; // Check if ref is defined before setting properties
+        friendVideo.current.srcObject = stream; 
         friendVideo.current.play();
       }
     });

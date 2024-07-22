@@ -25,7 +25,7 @@ const SearchFriend = () => {
 
     const fetchSuggestions = async (type, value) => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/usersearch/suggestions/${type}?query=${value}&educationType=${educationLevel}`, config);
+            const response = await axios.get(`https://liaison-main-4oyd.onrender.com/api/usersearch/suggestions/${type}?query=${value}&educationType=${educationLevel}`, config);
             setSuggestions(prev => ({ ...prev, [type]: response.data }));
         } catch (error) {
             toast({
@@ -40,7 +40,7 @@ const SearchFriend = () => {
 
     const handleSearch = async () => {
         try {
-            const response = await axios.get('http://localhost:4000/api/usersearch/usersearch', {
+            const response = await axios.get('https://liaison-main-4oyd.onrender.com/api/usersearch/usersearch', {
                 params: { username, educationLevel, school, passingYear, state, district },
                 ...config
             });
@@ -58,7 +58,7 @@ const SearchFriend = () => {
 
     const handleAddFriend = async (userId) => {
         try {
-            await axios.post(`http://localhost:4000/api/usersearch/notifications/friendRequests/addfriends/${userId}`, {}, config);
+            await axios.post(`https://liaison-main-4oyd.onrender.com/api/usersearch/notifications/friendRequests/addfriends/${userId}`, {}, config);
             toast({
                 title: 'Friend request sent successfully!',
                 status: 'success',
@@ -80,7 +80,7 @@ const SearchFriend = () => {
 
     const handleRejectFriendRequest = async (userId) => {
         try {
-            await axios.delete(`http://localhost:4000/api/usersearch/notifications/friendRequests/reject/${userId}`, config);
+            await axios.delete(`https://liaison-main-4oyd.onrender.com/api/usersearch/notifications/friendRequests/reject/${userId}`, config);
             toast({
                 title: 'Friend request rejected successfully!',
                 status: 'success',

@@ -33,7 +33,7 @@ const HomePage = () => {
     const getAllPosts = async () => {
         setLoadingPost(true);
         try {
-            const response = await axios.get('http://localhost:4000/api/posts/posts', config);
+            const response = await axios.get('https://liaison-main-4oyd.onrender.com/api/posts/posts', config);
             const { userId, posts } = response.data;
             if (userId) {
                 setUserId(userId);
@@ -55,7 +55,7 @@ const HomePage = () => {
     const getAllPostsWithoutLogin = async () => {
         setLoadingPost(true);
         try {
-            const response = await axios.get('http://localhost:4000/api/posts/posts/withoulogin',config);
+            const response = await axios.get('https://liaison-main-4oyd.onrender.com/api/posts/posts/withoulogin',config);
             const { posts } = response.data;
             setPosts(posts);
         } catch (error) {
@@ -93,7 +93,7 @@ const HomePage = () => {
         }
 
         try {
-            await axios.put(`http://localhost:4000/api/posts/addlike/${id}`, {}, config);
+            await axios.put(`https://liaison-main-4oyd.onrender.com/api/posts/addlike/${id}`, {}, config);
             getAllPosts();
         } catch (error) {
             toast({
@@ -122,7 +122,7 @@ const HomePage = () => {
         setCurrentPostId(id);
         setIsModalOpen(true);
         try {
-            const response = await axios.get(`http://localhost:4000/api/comments/${id}/getallcomments`, config);
+            const response = await axios.get(`https://liaison-main-4oyd.onrender.com/api/comments/${id}/getallcomments`, config);
             const allComments = response.data;
             setComments(prevComments => ({
                 ...prevComments,
@@ -166,7 +166,7 @@ const HomePage = () => {
         }
 
         try {
-            await axios.post('http://localhost:4000/api/comments/addcomment', { postId: currentPostId, text: newComment }, config);
+            await axios.post('https://liaison-main-4oyd.onrender.com/api/comments/addcomment', { postId: currentPostId, text: newComment }, config);
             toast({
                 title: "Comment added successfully",
                 status: 'success',

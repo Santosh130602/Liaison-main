@@ -14,7 +14,7 @@ const UserInfo = () => {
         const educationData = { school, passingYear, state, district };
 
         try {
-            const response = await axios.post('http://localhost:4000/api/education/addedulevel', {
+            const response = await axios.post('https://liaison-main-4oyd.onrender.com/api/education/addedulevel', {
                 educationType,
                 educationData
             }, {

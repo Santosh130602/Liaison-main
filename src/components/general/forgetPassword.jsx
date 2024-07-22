@@ -30,7 +30,7 @@ const PasswordResetModal = ({ isOpen, onClose }) => {
         },
       };
 
-      const { data } = await axios.put('http://localhost:4000/api/user/forgotpassword', {
+      const { data } = await axios.put('https://liaison-main-4oyd.onrender.com/api/user/forgotpassword', {
         email,
         updatedpassword
       }, config);

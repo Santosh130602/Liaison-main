@@ -286,7 +286,7 @@ const Header = () => {
   const [token, setToken] = useState(null);
   const [username, setUsername] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [notificationCount, setNotificationCount] = useState(0); // Initialize with 0
+  const [notificationCount, setNotificationCount] = useState(0); 
   const navigate = useNavigate();
   const toast = useToast();
   const dropdownRef = useRef(null);
@@ -296,9 +296,9 @@ const Header = () => {
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
-        setUsername(decodedToken.username); // Assuming the token has a 'username' field
-        setToken(token); // Set token state if it's valid
-        fetchNotification(token); // Fetch notifications after setting the token
+        setUsername(decodedToken.username); 
+        setToken(token); 
+        fetchNotification(token); 
       } catch (error) {
         console.error('Invalid token', error);
       }
@@ -311,14 +311,14 @@ const Header = () => {
           const decodedToken = jwtDecode(newToken);
           setUsername(decodedToken.username);
           setToken(newToken);
-          fetchNotification(newToken); // Fetch notifications after setting the new token
+          fetchNotification(newToken); 
         } catch (error) {
           console.error('Invalid token', error);
         }
       } else {
         setUsername('');
         setToken(null);
-        setNotificationCount(0); // Reset notification count when logged out
+        setNotificationCount(0); 
       }
     };
 
@@ -356,7 +356,7 @@ const Header = () => {
         },
       };
 
-      const response = await axios.get('http://localhost:4000/api/notifications/count', config);
+      const response = await axios.get('https://liaison-main-4oyd.onrender.com/api/notifications/count', config);
       setNotificationCount(response.data.count);
     } catch (error) {
       toast({
@@ -385,7 +385,7 @@ const Header = () => {
     localStorage.removeItem('token');
     setToken(null);
     setUsername('');
-    setNotificationCount(0); // Reset notification count on logout
+    setNotificationCount(0); 
     const event = new Event('authChange');
     window.dispatchEvent(event);
     navigate('/');
@@ -400,7 +400,7 @@ const Header = () => {
   }
 
   const handleNotifications = () => {
-    navigate("/notifications"); // Navigate to notifications page
+    navigate("/notifications"); 
   };
 
   const handleSearch = () => {

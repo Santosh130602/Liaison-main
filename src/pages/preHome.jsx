@@ -10,7 +10,7 @@ const PreHome = () => {
         setLoadingPost(true);
         setError(null); // Reset the error state before making the request
         try {
-            const response = await axios.get('http://localhost:4000/api/posts/posts/withoulogin');
+            const response = await axios.get('https://liaison-main-4oyd.onrender.com/api/posts/posts/withoulogin');
             const { posts } = response.data;
             setPosts(posts);
         } catch (error) {

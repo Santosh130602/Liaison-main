@@ -76,7 +76,7 @@ const SmallSideBar = () => {
   };
 
   const handleNotifications = () => {
-    navigate("/notifications"); // Navigate to notifications page
+    navigate("/notifications"); 
   };
 
   return (
